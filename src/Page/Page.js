@@ -138,7 +138,7 @@ class Page extends WixComponent {
   }
 
   render() {
-    const {backgroundImageUrl, gradientClassName, children, gradientCoverTail} = this.props;
+    const {backgroundImageUrl, gradientClassName, children, gradientCoverTail, withoutHeaderContainerBottomPadding} = this.props;
     const {headerHeight, tailHeight, minimized} = this.state;
     const hasBackgroundImage = !!backgroundImageUrl;
     const hasGradientClassName = !!gradientClassName && !backgroundImageUrl;
@@ -163,7 +163,7 @@ class Page extends WixComponent {
           style={this._pageHeaderContainerStyle()}
           className={classNames(s.pageHeaderContainer, {
             [s.minimized]: minimized,
-            [s.withoutBottomPadding]: PageTail && minimized
+            [s.withoutBottomPadding]: (PageTail && minimized) || withoutHeaderContainerBottomPadding
           })}
           ref={r => this.pageHeaderRef = r}
           >
@@ -264,7 +264,8 @@ Page.propTypes = {
     ) {
       return new Error(`Page: Invalid Prop children, unknown child ${children[key].type}`);
     }
-  }).isRequired
+  }).isRequired,
+  withoutHeaderContainerBottomPadding: PropTypes.bool
 };
 
 function getChildrenObject(children) {
