@@ -30,6 +30,13 @@ const header = breadcrumbs =>
     actionsBar={<Button>Action</Button>}
     />;
 
+const fixedContent = () =>
+  <Page.FixedContent>
+    <div style={{backgroundColor: 'white', color: 'black'}}>
+      <h2 style={{margin: '0'}}>This is a fixed content</h2>
+    </div>
+  </Page.FixedContent>;
+
 const content = showScss =>
   <Page.Content>
     <SomeContentComponent showScss={showScss}/>
@@ -49,7 +56,7 @@ export default {
   componentPath: '../../src/Page',
 
   componentProps: {
-    children: [header(Breadcrumbs), tail, content(false)],
+    children: [header(Breadcrumbs), tail, fixedContent(), content(false)],
     dataHook: 'story-page',
     gradientClassName: 'background-gradient',
     gradientCoverTail: true,
@@ -69,6 +76,10 @@ export default {
       {
         label: 'just content',
         value: [content(false)]
+      },
+      {
+        label: 'header, tail, fixed-content & content',
+        value: [header(Breadcrumbs), tail, fixedContent, content(false)]
       }
     ],
     backgroundImageUrl: [
