@@ -188,6 +188,20 @@ describe('Input', () => {
       const driver = createDriver(<Input unit={unit}/>);
       expect(driver.getUnit()).toEqual(unit);
     });
+
+    it('should invoke onInputClicked while click on unit', () => {
+      const onInputClicked = jest.fn();
+      const driver = createDriver(<Input unit="$" onInputClicked={onInputClicked}/>);
+      driver.clickUnit();
+      expect(onInputClicked).toBeCalled();
+    });
+
+    it('should not fail while click on unit without passing onInputClicked', () => {
+      const driver = createDriver(<Input unit="$"/>);
+      expect(() => {
+        driver.clickUnit();
+      }).not.toThrowError(/onInputClicked is not a function/);
+    });
   });
 
   describe('magnifyingGlass attribute', () => {
@@ -204,6 +218,20 @@ describe('Input', () => {
     it('should not display a magnifying glass icon if error is true', () => {
       const driver = createDriver(<Input magnifyingGlass error/>);
       expect(driver.hasMagnifyingGlass()).toBeFalsy();
+    });
+
+    it('should invoke onInputClicked while click on magnifying glass icon', () => {
+      const onInputClicked = jest.fn();
+      const driver = createDriver(<Input magnifyingGlass onInputClicked={onInputClicked}/>);
+      driver.clickMagnifyingGlass();
+      expect(onInputClicked).toBeCalled();
+    });
+
+    it('should not fail while click on magnifying glass icon without passing onInputClicked', () => {
+      const driver = createDriver(<Input magnifyingGlass/>);
+      expect(() => {
+        driver.clickMagnifyingGlass();
+      }).not.toThrowError(/onInputClicked is not a function/);
     });
   });
 
@@ -232,6 +260,20 @@ describe('Input', () => {
     it('should not display a menu arrow icon if magnifyingGlass is true', () => {
       const driver = createDriver(<Input menuArrow magnifyingGlass/>);
       expect(driver.hasMenuArrow()).toBeFalsy();
+    });
+
+    it('should invoke onInputClicked while click on menu arrow icon', () => {
+      const onInputClicked = jest.fn();
+      const driver = createDriver(<Input menuArrow onInputClicked={onInputClicked}/>);
+      driver.clickMenuArrow();
+      expect(onInputClicked).toBeCalled();
+    });
+
+    it('should not fail while click on menu arrow icon without passing onInputClicked', () => {
+      const driver = createDriver(<Input menuArrow/>);
+      expect(() => {
+        driver.clickMenuArrow();
+      }).not.toThrowError(/onInputClicked is not a function/);
     });
   });
 
@@ -594,11 +636,6 @@ describe('Input', () => {
       const driver = createDriver(<Input/>);
       expect(driver.getAriaDescribedby()).toBeNull;
     });
-  });
-
-  it('should set `width`', () => {
-    const driver = createDriver(<Input width={120}/>);
-    expect(driver.getWidth()).toBe('120px');
   });
 
   describe('className prop', () => {

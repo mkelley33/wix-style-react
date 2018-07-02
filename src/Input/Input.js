@@ -73,7 +73,6 @@ class Input extends Component {
       disabled,
       status,
       statusMessage,
-      width,
       tooltipPlacement,
       onTooltipShow,
       autocomplete,
@@ -82,11 +81,11 @@ class Input extends Component {
       errorMessage
     } = this.props;
 
-    const onIconClicked = () => {
+    const onIconClicked = e => {
       if (!disabled) {
         this.input.focus();
         this._onFocus();
-        this.props.onInputClicked();
+        this._onClick(e);
       }
     };
 
@@ -118,7 +117,7 @@ class Input extends Component {
 
     const inputElement = (
       <input
-        style={{textOverflow, width}}
+        style={{textOverflow}}
         ref={input => this.input = input}
         className={inputClassNames}
         id={id}
@@ -255,6 +254,7 @@ class Input extends Component {
 Input.displayName = 'Input';
 
 Input.defaultProps = {
+  autoSelect: true,
   size: 'normal',
   theme: 'normal',
   statusMessage: '',
@@ -263,7 +263,6 @@ Input.defaultProps = {
   roundInput: false,
   textOverflow: 'clip',
   maxLength: 524288,
-  width: 'initial',
   withSelection: false,
   clearButton: false
 };
@@ -425,7 +424,6 @@ Input.propTypes = {
 
   /** Inputs value */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   withSelection: PropTypes.bool,
   required: PropTypes.bool
 };
