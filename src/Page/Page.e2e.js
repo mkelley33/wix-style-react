@@ -71,7 +71,7 @@ describe('Page', async () => {
       runTestCases({dataHook});
     });
   });
-  
+
   describe('Header + FixedContent + Content', async () => {
     describe('With Background-Image', () => {
       const dataHook = 'story-page-background-image-header-fixed-content-content';
