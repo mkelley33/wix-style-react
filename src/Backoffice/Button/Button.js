@@ -84,4 +84,3 @@ class Button extends WixComponent {
 }
 
 export default withFocusable(Button);
-
