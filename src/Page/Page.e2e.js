@@ -58,11 +58,9 @@ describe('Page', async () => {
     describe('With gradientCoverTail', () => {
       runTestCases({dataHook, props: {backgroundImageUrl: ''}});
     });
-
   });
 
   describe('Header + Content', async () => {
-
     describe('With Background-Image', () => {
       const dataHook = 'story-page-background-image-header-content';
       runTestCases({dataHook});
@@ -73,9 +71,8 @@ describe('Page', async () => {
       runTestCases({dataHook});
     });
   });
-
+  
   describe('Header + FixedContent + Content', async () => {
-
     describe('With Background-Image', () => {
       const dataHook = 'story-page-background-image-header-fixed-content-content';
       runTestCases({dataHook});
@@ -86,5 +83,4 @@ describe('Page', async () => {
       runTestCases({dataHook});
     });
   });
-
 });
