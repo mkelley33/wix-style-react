@@ -8,7 +8,7 @@ import Favorite from 'wix-style-react/new-icons/Favorite';  // General icon
 import SortByArrowUp from 'wix-style-react/new-icons/system/SortByArrowUp'; // System icon
 <div>
   <Favorite />;
-  <SortByArrowUp size="3em" className="someclass" />;
+  <SortByArrowUp size="24px" className="someclass" />;
 </div>
 ~~~
 
