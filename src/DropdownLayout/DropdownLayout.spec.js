@@ -55,8 +55,18 @@ describe('DropdownLayout', () => {
       {id: 2, value: 'Option 3'}
     ];
     const optionsContent = options.map(option => option.value);
-    const driver = createDriver(<DropdownLayout options={options}/>);
+    const driver = createDriver(<DropdownLayout visible options={options}/>);
     expect(driver.optionsContent()).toEqual(optionsContent);
+  });
+
+  it('should not render options when not visible', () => {
+    const options = [
+      {id: 0, value: 'Option 1'},
+      {id: 1, value: 'Option 2'},
+      {id: 2, value: 'Option 3'}
+    ];
+    const driver = createDriver(<DropdownLayout options={options}/>);
+    expect(driver.isOptionsRendered()).toBeFalsy();
   });
 
   it('should hide dropdown on outside click', () => {
@@ -373,7 +383,7 @@ describe('DropdownLayout', () => {
     it('should exist', () => {
       const div = document.createElement('div');
       const dataHook = 'myDataHook';
-      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><DropdownLayout dataHook={dataHook} options={options}/></div>));
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><DropdownLayout visible dataHook={dataHook} options={options}/></div>));
       const dropdownLayoutTestkit = dropdownLayoutTestkitFactory({wrapper, dataHook});
       expect(dropdownLayoutTestkit.exists()).toBeTruthy();
       expect(dropdownLayoutTestkit.optionsLength()).toBe(6);
@@ -383,7 +393,7 @@ describe('DropdownLayout', () => {
   describe('enzyme testkit', () => {
     it('should exist', () => {
       const dataHook = 'myDataHook';
-      const wrapper = mount(<DropdownLayout dataHook={dataHook} options={options}/>);
+      const wrapper = mount(<DropdownLayout visible dataHook={dataHook} options={options}/>);
       const dropdownLayoutTestkit = enzymeDropdownLayoutTestkitFactory({wrapper, dataHook});
       expect(dropdownLayoutTestkit.exists()).toBeTruthy();
       expect(dropdownLayoutTestkit.optionsLength()).toBe(6);

@@ -36,6 +36,7 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
     isOptionSelectedWithGlobalClassName: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'wixstylereactSelected')),
     isOptionHeightSmall: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'smallHeight')),
     isOptionHeightBig: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'bigHeight')),
+    isOptionsRendered: () => options,
     isLinkOption: position => optionAt(position).tagName.toLowerCase() === 'a',
     classes: () => options.className,
     pressDownKey: () => ReactTestUtils.Simulate.keyDown(element, {key: 'ArrowDown'}),

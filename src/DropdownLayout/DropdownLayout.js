@@ -179,8 +179,26 @@ class DropdownLayout extends WixComponent {
     return node ? <div className={styles.node}>{node}</div> : null;
   }
 
+  renderDropdownOptions() {
+    if (!this.props.visible) {
+      return null;
+    }
+    return (
+      <div
+        className={styles.options}
+        style={{maxHeight: this.props.maxHeightPixels - 35 + 'px'}}
+        ref={options => this.options = options}
+        data-hook="dropdown-layout-options"
+        >
+        {this.props.options.map((option, idx) => (
+          this.renderOption({option, idx})
+        ))}
+      </div>
+    );
+  }
+
   render() {
-    const {options, visible, dropDirectionUp, tabIndex, fixedHeader, fixedFooter, withArrow, onMouseEnter, onMouseLeave} = this.props;
+    const {visible, dropDirectionUp, tabIndex, fixedHeader, fixedFooter, withArrow, onMouseEnter, onMouseLeave} = this.props;
     const contentContainerClassName = classNames({
       [styles.contentContainer]: true,
       [styles.shown]: visible,
@@ -193,11 +211,7 @@ class DropdownLayout extends WixComponent {
       <div tabIndex={tabIndex} className={classNames(styles.wrapper, styles[`theme-${this.props.theme}`])} onKeyDown={this._onKeyDown} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <div className={contentContainerClassName} style={{maxHeight: this.props.maxHeightPixels + 'px', minWidth: this.props.minWidthPixels ? `${this.props.minWidthPixels}px` : undefined}}>
           {this.renderNode(fixedHeader)}
-          <div className={styles.options} style={{maxHeight: this.props.maxHeightPixels - 35 + 'px'}} ref={options => this.options = options} data-hook="dropdown-layout-options">
-            {options.map((option, idx) => (
-              this.renderOption({option, idx})
-            ))}
-          </div>
+          {this.renderDropdownOptions()}
           {this.renderNode(fixedFooter)}
         </div>
         {this.renderTopArrow()}
