@@ -159,8 +159,8 @@ class ExampleSideMenuDrill extends React.Component {
             maxWidth="250"
             >
             <div className={styles.headerInTooltip}>
-              <span style={{marginRight: '5px', fontSize: '20px'}}>wix-style-react</span>
-              <ExternalLink/>
+              <span style={{fontSize: '20px'}}>wix-style-react</span>
+              <ExternalLink style={{top: 1, position: 'relative'}}/>
             </div>
           </Tooltip>
           <div style={{marginTop: '5px', fontSize: '13px'}}>Role: Owner</div>

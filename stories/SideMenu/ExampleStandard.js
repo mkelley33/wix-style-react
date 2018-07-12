@@ -24,7 +24,7 @@ export default () =>
             maxWidth="250"
             >
             <div className={styles.headerInTooltip}>
-              <span style={{marginRight: '5px', fontSize: '20px'}}>wix-style-react</span>
+              <span style={{fontSize: '20px'}}>wix-style-react</span>
               <ExternalLink/>
             </div>
           </Tooltip>
