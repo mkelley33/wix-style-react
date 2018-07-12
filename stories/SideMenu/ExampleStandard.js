@@ -9,8 +9,6 @@ import Edit from 'wix-style-react/new-icons/Edit';
 import ChatIcon from 'wix-style-react/new-icons/Chat';
 import ExternalLink from 'wix-style-react/new-icons/ExternalLink';
 
-import styles from './SideMenuStory.scss';
-
 export default () =>
   <div style={{width: 220, height: 700}}>
     <SideMenu>
@@ -23,7 +21,7 @@ export default () =>
             dataHook="site-name-tooltip"
             maxWidth="250"
             >
-            <div className={styles.headerInTooltip}>
+            <div style={{display: 'flex'}}>
               <span style={{fontSize: '20px'}}>wix-style-react</span>
               <ExternalLink/>
             </div>

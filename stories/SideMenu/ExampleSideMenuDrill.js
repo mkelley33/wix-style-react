@@ -9,7 +9,6 @@ import HelpIcon from 'wix-style-react/new-icons/InfoCircle';
 import ChatIcon from 'wix-style-react/new-icons/Chat';
 import ExternalLink from 'wix-style-react/new-icons/ExternalLink';
 
-import styles from './SideMenuStory.scss';
 let counter = 3;
 
 const items = [
@@ -158,7 +157,7 @@ class ExampleSideMenuDrill extends React.Component {
             dataHook="site-name-tooltip"
             maxWidth="250"
             >
-            <div className={styles.headerInTooltip}>
+            <div style={{display: 'flex'}}>
               <span style={{fontSize: '20px'}}>wix-style-react</span>
               <ExternalLink style={{top: 1, position: 'relative'}}/>
             </div>
