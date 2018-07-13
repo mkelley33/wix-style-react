@@ -124,6 +124,30 @@ describe('EditableSelector', () => {
     expect(selector.toggleType()).toEqual(props.toggleType);
   });
 
+  it('should stop edit when click add new row', () => {
+    props.options = [{isSelected: false, title: 'Shir', onToggle: () => {}}];
+    const driver = createDriver(<EditableSelector {...props}/>);
+    const newTitle = 'yo';
+    expect(driver.isEditing()).toBeFalsy();
+    driver.startEditing(0, newTitle);
+    expect(driver.isEditing()).toBeTruthy();
+    driver.startAdding();
+    expect(driver.isEditing()).toBeFalsy();
+    expect(driver.isAdding()).toBeTruthy();
+  });
+
+  it('should stop add when click edit row', () => {
+    props.options = [{isSelected: false, title: 'Shir', onToggle: () => {}}];
+    const driver = createDriver(<EditableSelector {...props}/>);
+    const newTitle = 'yo';
+    expect(driver.startAdding()).toBeFalsy();
+    driver.startAdding();
+    expect(driver.isAdding()).toBeTruthy();
+    driver.startEditing(0, newTitle);
+    expect(driver.isEditing()).toBeTruthy();
+    expect(driver.isAdding()).toBeFalsy();
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');
