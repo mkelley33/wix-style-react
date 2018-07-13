@@ -128,12 +128,12 @@ describe('EditableSelector', () => {
     props.options = [{isSelected: false, title: 'Shir', onToggle: () => {}}];
     const driver = createDriver(<EditableSelector {...props}/>);
     const newTitle = 'yo';
-    expect(driver.isEditing()).toBeFalsy();
+    expect(driver.isEditingRow()).toBeFalsy();
     driver.startEditing(0, newTitle);
-    expect(driver.isEditing()).toBeTruthy();
+    expect(driver.isEditingRow()).toBeTruthy();
     driver.startAdding();
-    expect(driver.isEditing()).toBeFalsy();
-    expect(driver.isAdding()).toBeTruthy();
+    expect(driver.isEditingRow()).toBeFalsy();
+    expect(driver.isAddingRow()).toBeTruthy();
   });
 
   it('should stop add when click edit row', () => {
@@ -142,10 +142,10 @@ describe('EditableSelector', () => {
     const newTitle = 'yo';
     expect(driver.startAdding()).toBeFalsy();
     driver.startAdding();
-    expect(driver.isAdding()).toBeTruthy();
+    expect(driver.isAddingRow()).toBeTruthy();
     driver.startEditing(0, newTitle);
-    expect(driver.isEditing()).toBeTruthy();
-    expect(driver.isAdding()).toBeFalsy();
+    expect(driver.isEditingRow()).toBeTruthy();
+    expect(driver.isAddingRow()).toBeFalsy();
   });
 
   describe('testkit', () => {

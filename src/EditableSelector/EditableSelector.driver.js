@@ -17,8 +17,9 @@ const editableSelectorDriverFactory = ({element, wrapper, component}) => {
       return [...element.querySelectorAll('[data-hook="editable-selector-item"]')].map(selector => selectorDriverFactory({element: selector}));
     },
     exists: () => !!element,
-    isEditing: () => isEditRowActive() && editableRowDriver().getText(),
-    isAdding: () => isEditRowActive() && !editableRowDriver().getText(),
+    isEditing: () => isEditRowActive(),
+    isEditingRow: () => isEditRowActive() && editableRowDriver().getText(),
+    isAddingRow: () => isEditRowActive() && !editableRowDriver().getText(),
     newRowButton,
     deleteButtonAt,
     editButtonAt,
